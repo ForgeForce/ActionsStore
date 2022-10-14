@@ -18,12 +18,11 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Token
+      - uses: navikt/github-app-token-generator@v1
         id: generate_token
-        uses: jarylc/github-app-token@v3.0.1
         with:
-          app: ${{ secrets.GH_APP_NAME }}
-          key: ${{ secrets.GH_APP_KEY }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+          app-id: ${{ secrets.GH_APP_NAME }}
       - uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: triage

@@ -37,7 +37,7 @@ jobs:
           comment: "You cannot use this command."
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
-          exit: false
+          exit: true
       - name: 'Auto-assign issue'
         if: ${{ (steps.command.outputs.command-arguments != '') && (steps.command.outputs.command-arguments != ' ') }}
         uses: pozil/auto-assign-issue@v1

@@ -51,6 +51,6 @@ jobs:
         uses: jungwinter/comment@v1
         with:
           type: create
-          body: "Please provide a team to assign"
+          body: "Please provide a team to assign!"
           issue_number: ${{ github.event.number }}
           token: ${{ steps.generate_token.outputs.token }}

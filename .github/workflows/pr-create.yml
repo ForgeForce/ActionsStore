@@ -21,4 +21,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr edit ${{ github.event.pull_request.html_url }} \
-              --add-reviewer forgeforce/triage
+              --add-reviewer forgeforce/triagers

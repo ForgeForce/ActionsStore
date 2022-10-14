@@ -18,20 +18,20 @@ jobs:
     name: Check comments for /assign
     runs-on: ubuntu-latest
     steps:
-      - name: Check for Command
-        id: command
-        uses: xt0rted/slash-command-action@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          command: assign
-          reaction: "true"
-          reaction-type: "eyes"
-          allow-edits: "false"
       - uses: navikt/github-app-token-generator@v1
         id: generate_token
         with:
           private-key: ${{ secrets.GH_APP_KEY }}
           app-id: ${{ secrets.GH_APP_NAME }}
+      - name: Check for Command
+        id: command
+        uses: xt0rted/slash-command-action@v1
+        with:
+          repo-token: ${{ steps.generate_token.outputs.token }}
+          command: assign
+          reaction: "true"
+          reaction-type: "eyes"
+          allow-edits: "false"
       - uses: TheModdingInquisition/actions-team-membership@v1.0
         with:
           team: 'triagers'

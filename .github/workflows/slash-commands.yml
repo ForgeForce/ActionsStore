@@ -39,17 +39,27 @@ jobs:
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
           exit: true
+      - uses: Matyrobbrt/actions-string-operation@326f1018f6ca239733801a9d717d70cbbb613652
+        id: check_blank
+        with:
+          input: ${{ steps.command.outputs.command-arguments }}
+          mode: isBlank
+      - uses: Matyrobbrt/actions-string-operation@326f1018f6ca239733801a9d717d70cbbb613652
+        id: parse_team
+        with:
+          input: ${{ steps.command.outputs.command-arguments }}
+          mode: parseTeam
       - name: 'Auto-assign issue'
-        if: ${{ (steps.command.outputs.command-arguments != '') && (steps.command.outputs.command-arguments != ' ') }}
+        if: ${{ steps.check_blank.outputs.result == 'false' }}
         uses: pozil/auto-assign-issue@v1
         with:
           removePreviousAssignees: true
-          teams: ${{ steps.command.outputs.command-arguments }}
+          teams: ${{ steps.parse_team.outputs.result }}
           repo-token: ${{ steps.generate_token.outputs.token }}
           allowSelfAssign: false
       - name: Comment on PR
         uses: actions/github-script@v3
-        if: ${{ (steps.command.outputs.command-arguments == '') || (steps.command.outputs.command-arguments == ' ') }}
+        if: ${{ steps.check_blank.outputs.result == 'true' }}
         with:
           script: |
            github.issues.createComment({

@@ -37,9 +37,9 @@ jobs:
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
           exit: false
-       - name: 'Auto-assign issue'
-          uses: pozil/auto-assign-issue@v1
-          with:
-              removePreviousAssignees: true
-              teams: triagers
-              repo-token: ${{ steps.generate_token.outputs.token }}
+      - name: 'Auto-assign issue'
+        uses: pozil/auto-assign-issue@v1
+        with:
+          removePreviousAssignees: true
+          teams: triagers
+          repo-token: ${{ steps.generate_token.outputs.token }}

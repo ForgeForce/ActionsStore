@@ -39,7 +39,7 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
           exit: false
       - name: 'Auto-assign issue'
-        if: (steps.generate_token.outputs.token != '') && (steps.generate_token.outputs.token != ' ')
+        if: ${{ (steps.command.outputs.command-arguments != '') && (steps.command.outputs.command-arguments != ' ') }}
         uses: pozil/auto-assign-issue@v1
         with:
           removePreviousAssignees: true
@@ -47,7 +47,7 @@ jobs:
           repo-token: ${{ steps.generate_token.outputs.token }}
           allowSelfAssign: false
       - name: Create comment
-        if: (steps.generate_token.outputs.token == '') || (steps.generate_token.outputs.token == ' ')
+        if: ${{ (steps.command.outputs.command-arguments == '') || (steps.command.outputs.command-arguments == ' ') }}
         uses: jungwinter/comment@v1
         with:
           type: create

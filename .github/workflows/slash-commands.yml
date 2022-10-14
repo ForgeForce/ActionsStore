@@ -1,0 +1,45 @@
+on:
+  workflow_call:
+    secrets:
+      GH_APP_NAME:
+        required: true
+      GH_APP_KEY:
+        required: true
+        
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  discussions: write
+ 
+name: Slash commands
+jobs:
+  check_comments:
+    name: Check comments for /assign
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for Command
+        id: command
+        uses: xt0rted/slash-command-action@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          command: assign
+          reaction: "true"
+          reaction-type: "eyes"
+          allow-edits: "false"
+      - uses: navikt/github-app-token-generator@v1
+        id: generate_token
+        with:
+          private-key: ${{ secrets.GH_APP_KEY }}
+          app-id: ${{ secrets.GH_APP_NAME }}
+      - uses: TheModdingInquisition/actions-team-membership@v1.0
+        with:
+          team: 'triagers'
+          token: ${{ steps.generate_token.outputs.token }}
+          exit: false
+       - name: 'Auto-assign issue'
+          uses: pozil/auto-assign-issue@v1
+          with:
+              removePreviousAssignees: true
+              teams: triagers
+              repo-token: ${{ steps.generate_token.outputs.token }}

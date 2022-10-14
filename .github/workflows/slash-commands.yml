@@ -39,12 +39,12 @@ jobs:
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
           exit: true
-      - uses: Matyrobbrt/actions-string-operation@e08af7f06581e7e5cf161574682733712a4c15f1
+      - uses: Matyrobbrt/actions-string-operation@2c69ebc8cbe36d6d74f9a91ddd9867b435ae64d6
         id: check_blank
         with:
           in: ${{ steps.command.outputs.command-arguments }}
           mode: isBlank
-      - uses: Matyrobbrt/actions-string-operation@e08af7f06581e7e5cf161574682733712a4c15f1
+      - uses: Matyrobbrt/actions-string-operation@2c69ebc8cbe36d6d74f9a91ddd9867b435ae64d6
         id: parse_team
         with:
           in: ${{ steps.command.outputs.command-arguments }}

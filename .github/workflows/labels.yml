@@ -11,8 +11,12 @@ permissions:
 
 jobs:
   action:
+    if: ${{ github.event.label.name == 'spam' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/label-actions@v2
+      - uses: peter-evans/close-issue@v2
+        with: 
+          close-reason: 'not_planned'
+      - uses: OSDKDev/lock-issues@v1.1
         with:
-            config-path: 'label-actions.yml'
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"

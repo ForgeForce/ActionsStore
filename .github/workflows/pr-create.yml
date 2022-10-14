@@ -18,15 +18,16 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions-ecosystem/action-add-labels@v1
-        with:
-          labels: triage
       - name: Generate Token
         id: generate_token
         uses: jarylc/github-app-token@v3.0.1
         with:
           app: ${{ secrets.GH_APP_NAME }}
           key: ${{ secrets.GH_APP_KEY }}
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: triage
+          github_token: ${{ steps.generate_token.outputs.token }}
       - name: Create PR review request
         run: |
           gh pr edit ${{ github.event.pull_request.html_url }} \

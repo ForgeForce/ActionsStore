@@ -46,11 +46,10 @@ jobs:
           teams: ${{ steps.command.outputs.command-arguments }}
           repo-token: ${{ steps.generate_token.outputs.token }}
           allowSelfAssign: false
-      - name: Create comment
+      - name: Comment on PR
         if: ${{ (steps.command.outputs.command-arguments == '') || (steps.command.outputs.command-arguments == ' ') }}
-        uses: jungwinter/comment@v1
-        with:
-          type: create
-          body: "Please provide a team to assign!"
-          issue_number: ${{ github.event.number }}
-          token: ${{ steps.generate_token.outputs.token }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.html_url }} \
+              --body "Please provide a team to assign!"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

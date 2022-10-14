@@ -39,15 +39,15 @@ jobs:
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
           exit: true
-      - uses: Matyrobbrt/actions-string-operation@326f1018f6ca239733801a9d717d70cbbb613652
+      - uses: Matyrobbrt/actions-string-operation@e08af7f06581e7e5cf161574682733712a4c15f1
         id: check_blank
         with:
-          input: ${{ steps.command.outputs.command-arguments }}
+          in: ${{ steps.command.outputs.command-arguments }}
           mode: isBlank
-      - uses: Matyrobbrt/actions-string-operation@326f1018f6ca239733801a9d717d70cbbb613652
+      - uses: Matyrobbrt/actions-string-operation@e08af7f06581e7e5cf161574682733712a4c15f1
         id: parse_team
         with:
-          input: ${{ steps.command.outputs.command-arguments }}
+          in: ${{ steps.command.outputs.command-arguments }}
           mode: parseTeam
       - name: 'Auto-assign issue'
         if: ${{ steps.check_blank.outputs.result == 'false' }}

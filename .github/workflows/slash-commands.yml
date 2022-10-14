@@ -25,14 +25,14 @@ jobs:
           app-id: ${{ secrets.GH_APP_NAME }}
       - name: Check for Command
         id: command
-        uses: forgeforce/slash-command-action@34a0e2eee9f561028d2129a69095c9eb3667bb89
+        uses: forgeforce/slash-command-action@967090984e6d4945428cf0c7a4890b62e9f7554f
         with:
           repo-token: ${{ steps.generate_token.outputs.token }}
           command: assign
           reaction: "true"
           reaction-type: "eyes"
           allow-edits: "false"
-          prefix: "@forgeforce-bot\\s"
+          prefix: "@forgeforce-bot<ws>"
       - uses: TheModdingInquisition/actions-team-membership@v1.0
         with:
           comment: "You cannot use this command."

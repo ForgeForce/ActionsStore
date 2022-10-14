@@ -17,8 +17,8 @@ jobs:
         with:
           labels: triage
       - name: Create PR review request
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr edit ${{ github.event.pull_request.html_url }} \
               --add-reviewer forgeforce/triagers
+        env:
+          GITHUB_TOKEN: ${{ secrets.pat }}

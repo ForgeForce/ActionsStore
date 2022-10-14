@@ -21,4 +21,4 @@ jobs:
           gh pr edit ${{ github.event.pull_request.html_url }} \
               --add-reviewer forgeforce/triagers
         env:
-          GITHUB_TOKEN: ${{ secrets.pat }}
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}

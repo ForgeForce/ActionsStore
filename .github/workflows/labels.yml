@@ -18,6 +18,7 @@ jobs:
         with: 
           close-reason: 'not_planned'
         if: ${{ github.event_name != 'pull_request' }}
-      - uses: OSDKDev/lock-issues@v1.1
+      - uses: maxkomarychev/oction-lock-issue@v0.7.1
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+          issue_number: ${{ github.event.number }}

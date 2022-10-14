@@ -32,7 +32,7 @@ jobs:
           reaction: "true"
           reaction-type: "eyes"
           allow-edits: "false"
-          prefix: "@forgeforce-bot "
+          prefix: "\\@forgeforce\\-bot\\ "
       - uses: TheModdingInquisition/actions-team-membership@v1.0
         with:
           comment: "You cannot use this command."

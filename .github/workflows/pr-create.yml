@@ -33,3 +33,7 @@ jobs:
               --add-reviewer forgeforce/triagers
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      - uses: monry/actions-add-issue-to-project@v2
+        with:
+          project-url: https://github.com/orgs/ForgeForce/projects/4
+          github-token: ${{ steps.generate_token.outputs.token }}

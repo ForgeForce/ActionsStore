@@ -25,7 +25,7 @@ jobs:
           app-id: ${{ secrets.GH_APP_NAME }}
       - name: Check for Command
         id: command
-        uses: forgeforce/slash-command-action@95c6764b5789226e28e9cdc49a98d412aa64a8d6
+        uses: forgeforce/slash-command-action@34a0e2eee9f561028d2129a69095c9eb3667bb89
         with:
           repo-token: ${{ steps.generate_token.outputs.token }}
           command: assign

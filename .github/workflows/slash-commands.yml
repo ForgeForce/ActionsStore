@@ -41,5 +41,5 @@ jobs:
         uses: pozil/auto-assign-issue@v1
         with:
           removePreviousAssignees: true
-          teams: triagers
+          teams: ${{ steps.command.outputs.command-arguments }}
           repo-token: ${{ steps.generate_token.outputs.token }}

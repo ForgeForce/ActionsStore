@@ -17,6 +17,7 @@ jobs:
       - uses: peter-evans/close-issue@v2
         with: 
           close-reason: 'not_planned'
+        if: ${{ github.event_name == 'issue' }}
       - uses: OSDKDev/lock-issues@v1.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"

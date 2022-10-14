@@ -45,6 +45,7 @@ jobs:
           removePreviousAssignees: true
           teams: ${{ steps.command.outputs.command-arguments }}
           repo-token: ${{ steps.generate_token.outputs.token }}
+          allowSelfAssign: false
       - name: Create comment
         if: (steps.generate_token.outputs.token == '') || (steps.generate_token.outputs.token == ' ')
         uses: jungwinter/comment@v1

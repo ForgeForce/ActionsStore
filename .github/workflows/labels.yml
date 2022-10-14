@@ -10,8 +10,8 @@ permissions:
   discussions: write
 
 jobs:
-  action:
-    if: ${{ github.event.label.name == 'spam' }}
+  lock:
+    if: ${{ (github.event.label.name == 'spam') && (github.event.action == 'labeled') }}
     runs-on: ubuntu-latest
     steps:
       - uses: peter-evans/close-issue@v2

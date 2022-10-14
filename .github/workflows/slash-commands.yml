@@ -34,12 +34,22 @@ jobs:
           allow-edits: "false"
       - uses: TheModdingInquisition/actions-team-membership@v1.0
         with:
+          comment: "You cannot use this command."
           team: 'triagers'
           token: ${{ steps.generate_token.outputs.token }}
           exit: false
       - name: 'Auto-assign issue'
+        if: (steps.generate_token.outputs.token != '') && (steps.generate_token.outputs.token != ' ')
         uses: pozil/auto-assign-issue@v1
         with:
           removePreviousAssignees: true
           teams: ${{ steps.command.outputs.command-arguments }}
           repo-token: ${{ steps.generate_token.outputs.token }}
+      - name: Create comment
+        if: (steps.generate_token.outputs.token == '') || (steps.generate_token.outputs.token == ' ')
+        uses: jungwinter/comment@v1
+        with:
+          type: create
+          body: "Please provide a team to assign"
+          issue_number: ${{ github.event.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}

@@ -23,7 +23,7 @@ jobs:
         with:
           private-key: ${{ secrets.GH_APP_KEY }}
           app-id: ${{ secrets.GH_APP_NAME }}
-      - uses: forgeforce/forgecommands@3a32831b7dbcbc7acc550f45af29f8f069e5d651
+      - uses: forgeforce/forgecommands@fed4b5b4e50172d63fdad6da093676eeb0e4fdcc
         with:
           prefix: "@forgeforce-bot<ws>"
           github-token: ${{ steps.generate_token.outputs.token }}

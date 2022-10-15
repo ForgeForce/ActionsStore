@@ -23,49 +23,7 @@ jobs:
         with:
           private-key: ${{ secrets.GH_APP_KEY }}
           app-id: ${{ secrets.GH_APP_NAME }}
-      - name: Check for Command
-        id: command
-        uses: forgeforce/slash-command-action@967090984e6d4945428cf0c7a4890b62e9f7554f
+      - name: forgeforce/forgecommands@68b83af84b36bb7371d65f9b8b4385ea6a3aac1e
         with:
-          repo-token: ${{ steps.generate_token.outputs.token }}
-          command: assign
-          reaction: "true"
-          reaction-type: "eyes"
-          allow-edits: "false"
           prefix: "@forgeforce-bot<ws>"
-      - uses: TheModdingInquisition/actions-team-membership@v1.0
-        with:
-          comment: "You cannot use this command."
-          team: 'triagers'
-          token: ${{ steps.generate_token.outputs.token }}
-          exit: true
-      - uses: Matyrobbrt/actions-string-operation@f778ee685ec51e091824d2b3c3cc643cca0658e5
-        id: check_blank
-        with:
-          in: ${{ steps.command.outputs.command-arguments }}
-          mode: isBlank
-      - uses: Matyrobbrt/actions-string-operation@f778ee685ec51e091824d2b3c3cc643cca0658e5
-        id: parse_team
-        with:
-          in: ${{ steps.command.outputs.command-arguments }}
-          mode: parseTeam
-      - name: 'Auto-assign issue'
-        if: ${{ steps.check_blank.outputs.result == 'false' }}
-        uses: pozil/auto-assign-issue@v1
-        with:
-          removePreviousAssignees: true
-          teams: ${{ steps.parse_team.outputs.result }}
-          repo-token: ${{ steps.generate_token.outputs.token }}
-          allowSelfAssign: false
-      - name: Comment on PR
-        uses: actions/github-script@v3
-        if: ${{ steps.check_blank.outputs.result == 'true' }}
-        with:
-          script: |
-           github.issues.createComment({
-             issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: 'Please provide a team to assign!'
-           })
           github-token: ${{ steps.generate_token.outputs.token }}

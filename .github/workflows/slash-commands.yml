@@ -23,8 +23,8 @@ jobs:
         with:
           private-key: ${{ secrets.GH_APP_KEY }}
           app-id: ${{ secrets.GH_APP_NAME }}
-      - uses: forgeforce/forgecommands@da4f677c4554c7890bd7a40e4f251739ba0bbf06
+      - uses: forgeforce/forgecommands@96fafcdeac5651b676b0c8d88d595294beebf69a
         with:
-          prefix: "@forgeforce-bot<ws>"
+          prefixes: "@forgeforce-bot<ws>,/"
           github-token: ${{ steps.generate_token.outputs.token }}
           triage-team: triagers

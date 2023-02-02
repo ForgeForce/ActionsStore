@@ -38,4 +38,7 @@ commands:
   allowEdits: false
   minimizeComment: true
   reactToComment: true
-privateMirror: "ActionsTestMirror"
+privateMirror: 
+  mirror: "ActionsTestMirror"
+  toAdd:
+  - "patches/"

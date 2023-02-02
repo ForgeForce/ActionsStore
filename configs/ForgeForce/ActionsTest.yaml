@@ -7,6 +7,10 @@ labels:
   new_event: "New Event"
   triage: "Triage"
   latest: "1.19"
+privateMirror: 
+  mirror: "ActionsTestMirror"
+  toAdd:
+  - "patches/"
 labelLocks:
   Forum:
     lock: true
@@ -38,7 +42,3 @@ commands:
   allowEdits: false
   minimizeComment: true
   reactToComment: true
-privateMirror: 
-  mirror: "ActionsTestMirror"
-  toAdd:
-  - "patches/"

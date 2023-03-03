@@ -23,7 +23,7 @@ labelLocks:
     close: true
     message: null
 triage:
-  teamName: "triage"
+  teamName: "triagers"
   projectId: 4
 labelTeams: {}
 commands:
